@@ -1,0 +1,51 @@
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
+#include <fstream> 
+#include <string.h>
+#include <ctime>
+#include <stdio.h>
+
+using namespace std;
+
+int main() {
+  
+  ifstream filein; 
+  int n; 
+  int a[100]; 
+  filein.open("input.txt"); 
+  if (filein.is_open())
+    cout<<"ok!!"; 
+  else cout<<"fail"; 
+  
+  
+  filein>>n; 
+  for ( int i =0; i<n; i++) 
+  {  filein>>a[i];  }
+    
+  filein.close(); 
+  
+  
+  ofstream fileout; 
+  int maxn = a[0]; 
+  fileout.open("ketqua.txt") ; 
+
+  for ( int i=1; i<n; i++)
+  {
+    if ( a[i] > maxn )
+    {
+      maxn  = a[i]; 
+      
+    }
+  }
+  fileout<<maxn;
+
+  
+  fileout.close(); 
+  
+  
+
+
+
+  return 0;
+}
