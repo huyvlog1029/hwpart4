@@ -1,0 +1,61 @@
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
+#include <fstream> 
+#include <string.h>
+#include <ctime>
+#include <stdio.h>
+#include <cmath>
+
+
+using namespace std;
+
+
+bool is_prime(int n) 
+{
+    if (n < 2) 
+	{
+        return false;
+    }
+    for (int i = 2; i * i <= n; ++i) 
+	{
+        if (n % i == 0) 
+		{
+            return false;
+        }
+    }
+    return true;
+}
+
+
+int main() {
+  
+	ifstream filein; 
+	ofstream fileout;
+	
+	filein.open("input.txt"); 
+	fileout.open("ketqua.txt") ;
+
+
+	int num;
+    int count = 0;
+
+    while (filein >> num) 
+	{
+        if (is_prime(num)) 
+		{
+            fileout << num << " ";
+            count++;
+            if (count == 10) 
+			{
+                fileout << endl;
+                count = 0;
+            }
+        }
+    }
+	
+	
+	filein.close();  
+	fileout.close();
+  return 0;
+}
