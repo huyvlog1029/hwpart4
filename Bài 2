@@ -1,0 +1,75 @@
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
+#include <fstream> 
+#include <string.h>
+#include <ctime>
+#include <stdio.h>
+#include <cmath>
+#include <cctype>
+#include <sstream>
+
+using namespace std;
+
+void delspaces(char *str)
+{
+	int j =0; 
+	for ( int i =0; i< strlen(str); i++)
+	{
+		if ( str[i] != ' ')
+			str[j++] = str[i]; 
+		
+		else if ( j > 0 && str[i+1] != ' ')
+			str[j++] = str[i]; 
+	}
+	if ( str[j-1] == ' ')
+		str[j-1] = '\0'; 
+	else 
+		str[j] = '\0'; 
+}
+//done	
+
+string louper(const string &str) //  la 1 tham chieu hang toi chuoi dau vao..! 
+{
+	stringstream ss(str); // chua hieu ki |   Tao 1 stringstream tu chuoi dau vào
+	string word;
+	string results;  
+	while (ss >> word) 
+	{
+		word[0] = toupper(word[0]); 
+		for ( int i=1 ; i < word.length() ; i++) 
+		{
+			word[i] = tolower(word[i]) ; 
+		}
+		results += word + " "; 
+	}
+	return results;
+}
+
+int main() {
+
+	ifstream filein; 
+  	ofstream fileout; 
+  	filein.open("input.txt"); 
+  	fileout.open("ketqua.txt") ;
+  
+  	string input;
+  	getline(filein, input); // remove first line
+
+    while (getline(filein, input)) 
+	{
+        string output = louper(input);
+        delspaces(&output[0]);
+        fileout << output << endl;
+    }
+
+  	
+    
+  	filein.close();  
+	fileout.close();
+
+    
+  
+    
+  return 0;
+}
